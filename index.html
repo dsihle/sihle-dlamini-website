@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sihle Dlamini | Web Designer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #0b1f3a;
+    --navy-mid: #12325f;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --white: #ffffff;
+    --off-white: #f7f5f0;
+    --light-gray: #eef0f4;
+    --text-dark: #1a1a2e;
+    --text-muted: #5a6a82;
+    --border: rgba(201,168,76,0.25);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--text-dark);
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    background: rgba(11,31,58,0.97);
+    backdrop-filter: blur(12px);
+    padding: 0 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    color: var(--gold);
+    font-size: 1.3rem;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: rgba(255,255,255,0.8);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    background: var(--gold);
+    color: var(--navy) !important;
+    padding: 8px 22px;
+    border-radius: 4px;
+    font-weight: 600 !important;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--gold-light) !important; color: var(--navy) !important; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, #1a3a6b 100%);
+    display: flex; align-items: center;
+    padding: 100px 5% 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h60v60H0z' fill='none'/%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(201,168,76,0.06)'/%3E%3C/svg%3E") repeat;
+  }
+  .hero-grid {
+    max-width: 1200px; margin: 0 auto; width: 100%;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    position: relative;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(201,168,76,0.15);
+    border: 1px solid var(--border);
+    border-radius: 50px;
+    padding: 6px 18px;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge span { color: var(--gold); font-size: 0.8rem; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; }
+  .hero-badge::before { content: '●'; color: var(--gold); font-size: 0.5rem; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 3.6rem; line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--gold); }
+  .hero p {
+    color: rgba(255,255,255,0.72);
+    font-size: 1.1rem; line-height: 1.7;
+    margin-bottom: 2rem; max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--navy);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 600; font-size: 0.95rem;
+    text-decoration: none; transition: all 0.2s;
+    border: 2px solid var(--gold);
+  }
+  .btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); }
+  .btn-outline {
+    background: transparent; color: var(--white);
+    padding: 14px 32px; border-radius: 4px;
+    font-weight: 500; font-size: 0.95rem;
+    text-decoration: none; border: 2px solid rgba(255,255,255,0.3);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* PHOTO CARD */
+  .hero-photo-wrap {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .photo-frame {
+    position: relative; width: 360px; height: 440px;
+  }
+  .photo-bg-office {
+    position: absolute; inset: 0; border-radius: 12px;
+    overflow: hidden;
+    background: linear-gradient(160deg, #1a3558 0%, #2a5080 40%, #1e4070 70%, #0f2840 100%);
+  }
+  /* Office background SVG pattern */
+  .photo-bg-office::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='440'%3E%3Crect width='400' height='440' fill='%231a3558'/%3E%3Crect x='20' y='60' width='160' height='200' rx='4' fill='%230d2440' stroke='%23244a7a' stroke-width='1'/%3E%3Crect x='40' y='80' width='120' height='8' rx='2' fill='%23c9a84c' opacity='0.3'/%3E%3Crect x='40' y='96' width='90' height='5' rx='2' fill='%23fff' opacity='0.1'/%3E%3Crect x='40' y='108' width='100' height='5' rx='2' fill='%23fff' opacity='0.1'/%3E%3Crect x='40' y='120' width='75' height='5' rx='2' fill='%23fff' opacity='0.08'/%3E%3Crect x='40' y='140' width='120' height='70' rx='3' fill='%23c9a84c' opacity='0.08' stroke='%23c9a84c' stroke-width='0.5'/%3E%3Crect x='220' y='30' width='155' height='260' rx='4' fill='%230d2440' stroke='%23244a7a' stroke-width='1'/%3E%3Crect x='235' y='50' width='125' height='90' rx='3' fill='%23244a7a' opacity='0.5'/%3E%3Ccircle cx='250' cy='70' r='12' fill='%23c9a84c' opacity='0.2'/%3E%3Crect x='235' y='155' width='80' height='6' rx='2' fill='%23c9a84c' opacity='0.35'/%3E%3Crect x='235' y='168' width='120' height='4' rx='2' fill='%23fff' opacity='0.1'/%3E%3Crect x='235' y='178' width='100' height='4' rx='2' fill='%23fff' opacity='0.08'/%3E%3Crect x='235' y='188' width='110' height='4' rx='2' fill='%23fff' opacity='0.08'/%3E%3Crect x='0' y='340' width='400' height='100' fill='%230a1e35'/%3E%3Crect x='20' y='350' width='60' height='90' fill='%230d2440' stroke='%23244a7a' stroke-width='0.5'/%3E%3Crect x='100' y='360' width='60' height='80' fill='%230d2440' stroke='%23244a7a' stroke-width='0.5'/%3E%3Crect x='180' y='345' width='60' height='95' fill='%230d2440' stroke='%23244a7a' stroke-width='0.5'/%3E%3Crect x='260' y='355' width='60' height='85' fill='%230d2440' stroke='%23244a7a' stroke-width='0.5'/%3E%3Crect x='340' y='348' width='50' height='92' fill='%230d2440' stroke='%23244a7a' stroke-width='0.5'/%3E%3Cline x1='0' y1='340' x2='400' y2='340' stroke='%23244a7a' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: cover;
+  }
+  .photo-img {
+    position: absolute;
+    bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 280px; height: 360px;
+    object-fit: cover; object-position: top center;
+    border-radius: 8px 8px 0 0;
+    filter: contrast(1.05) brightness(1.02);
+  }
+  .photo-accent {
+    position: absolute; bottom: -12px; right: -12px;
+    width: 100px; height: 100px;
+    border: 3px solid var(--gold);
+    border-radius: 8px;
+    z-index: -1;
+  }
+  .photo-accent-tl {
+    position: absolute; top: -12px; left: -12px;
+    width: 60px; height: 60px;
+    border: 3px solid rgba(201,168,76,0.4);
+    border-radius: 8px;
+    z-index: -1;
+  }
+  .experience-tag {
+    position: absolute; bottom: 24px; left: -30px;
+    background: var(--white);
+    padding: 12px 18px; border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    display: flex; align-items: center; gap: 10px;
+  }
+  .experience-tag .num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--navy); }
+  .experience-tag .label { font-size: 0.72rem; color: var(--text-muted); line-height: 1.3; }
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 1.5rem;
+  }
+  .hero-stat-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); font-weight: 700; }
+  .hero-stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.55); margin-top: 2px; }
+
+  /* SECTION */
+  section { padding: 90px 5%; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.6rem; color: var(--navy);
+    line-height: 1.2; margin-bottom: 1rem;
+  }
+  .section-sub { color: var(--text-muted); font-size: 1rem; line-height: 1.7; max-width: 580px; }
+
+  /* ABOUT */
+  .about-bg { background: var(--off-white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .about-text p { color: var(--text-muted); line-height: 1.8; margin-bottom: 1rem; font-size: 1rem; }
+  .about-checklist { list-style: none; margin: 1.5rem 0; display: flex; flex-direction: column; gap: 10px; }
+  .about-checklist li { display: flex; align-items: flex-start; gap: 12px; color: var(--text-muted); font-size: 0.95rem; }
+  .about-checklist li::before {
+    content: '✦';
+    color: var(--gold); font-size: 0.7rem; margin-top: 4px; flex-shrink: 0;
+  }
+  .about-skills { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .skill-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 10px; padding: 1.25rem;
+  }
+  .skill-card-icon { font-size: 1.5rem; margin-bottom: 8px; }
+  .skill-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .skill-card p { font-size: 0.78rem; color: var(--text-muted); line-height: 1.5; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .service-card {
+    background: var(--white); border: 1px solid var(--light-gray);
+    border-radius: 12px; padding: 2rem;
+    transition: all 0.3s; position: relative; overflow: hidden;
+  }
+  .service-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(11,31,58,0.1); border-color: var(--border); }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .service-card:hover::before { opacity: 1; }
+  .service-num { font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: var(--light-gray); line-height: 1; margin-bottom: 1rem; }
+  .service-card h3 { font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 0.75rem; }
+  .service-card p { color: var(--text-muted); font-size: 0.88rem; line-height: 1.7; }
+
+  /* PRICING */
+  .pricing-bg { background: var(--navy); }
+  .pricing-bg .section-title { color: var(--white); }
+  .pricing-bg .section-sub { color: rgba(255,255,255,0.6); }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
+  .pricing-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 16px; padding: 2.5rem 2rem;
+    position: relative; transition: all 0.3s;
+  }
+  .pricing-card:hover { background: rgba(255,255,255,0.08); transform: translateY(-4px); }
+  .pricing-card.featured {
+    background: rgba(201,168,76,0.12);
+    border-color: var(--gold);
+    transform: scale(1.04);
+  }
+  .pricing-card.featured:hover { transform: scale(1.04) translateY(-4px); }
+  .featured-badge {
+    position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
+    background: var(--gold); color: var(--navy);
+    font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+    padding: 5px 16px; border-radius: 50px;
+    white-space: nowrap;
+  }
+  .plan-name { font-size: 0.75rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .plan-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem; font-weight: 700; color: var(--white);
+    line-height: 1; margin: 0.5rem 0;
+  }
+  .plan-price span { font-size: 1.1rem; font-weight: 400; color: rgba(255,255,255,0.5); }
+  .plan-desc { color: rgba(255,255,255,0.55); font-size: 0.85rem; line-height: 1.5; margin-bottom: 1.5rem; }
+  .plan-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 2rem; }
+  .plan-features li { display: flex; align-items: flex-start; gap: 10px; color: rgba(255,255,255,0.75); font-size: 0.88rem; }
+  .plan-features li::before { content: '✓'; color: var(--gold); font-weight: 700; flex-shrink: 0; }
+  .plan-features li.no::before { content: '✗'; color: rgba(255,255,255,0.2); }
+  .plan-features li.no { color: rgba(255,255,255,0.3); }
+  .plan-btn {
+    display: block; width: 100%; text-align: center;
+    padding: 12px; border-radius: 6px;
+    font-weight: 600; font-size: 0.9rem; text-decoration: none;
+    border: 2px solid rgba(201,168,76,0.5);
+    color: var(--gold); transition: all 0.2s;
+  }
+  .plan-btn:hover { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .plan-btn.featured-btn { background: var(--gold); color: var(--navy); border-color: var(--gold); }
+  .plan-btn.featured-btn:hover { background: var(--gold-light); border-color: var(--gold-light); }
+
+  /* HOW IT WORKS */
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; margin-top: 3rem; position: relative; }
+  .steps-grid::before {
+    content: ''; position: absolute; top: 28px; left: 10%; right: 10%; height: 2px;
+    background: linear-gradient(90deg, var(--gold) 0%, var(--gold-light) 100%);
+    opacity: 0.3;
+  }
+  .step { text-align: center; position: relative; }
+  .step-num {
+    width: 56px; height: 56px;
+    background: var(--navy); border: 2px solid var(--gold);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700;
+    color: var(--gold); margin: 0 auto 1rem;
+    position: relative; z-index: 1;
+  }
+  .step h4 { font-size: 0.95rem; font-weight: 600; color: var(--navy); margin-bottom: 0.5rem; }
+  .step p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; }
+
+  /* CTA */
+  .cta-section {
+    background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 100%);
+    padding: 70px 5%; text-align: center;
+  }
+  .cta-section h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--navy); margin-bottom: 1rem; }
+  .cta-section p { color: rgba(11,31,58,0.7); font-size: 1rem; margin-bottom: 2rem; }
+  .cta-btn {
+    background: var(--navy); color: var(--white);
+    padding: 16px 40px; border-radius: 6px;
+    font-weight: 600; font-size: 0.95rem; text-decoration: none;
+    display: inline-block; transition: all 0.2s;
+    border: 2px solid var(--navy);
+  }
+  .cta-btn:hover { background: transparent; color: var(--navy); }
+
+  /* FOOTER */
+  footer {
+    background: var(--navy); padding: 40px 5%;
+    text-align: center;
+    border-top: 1px solid rgba(201,168,76,0.2);
+  }
+  .footer-logo { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.2rem; margin-bottom: 1rem; }
+  .footer-links { display: flex; justify-content: center; gap: 2rem; list-style: none; margin-bottom: 1.5rem; flex-wrap: wrap; }
+  .footer-links a { color: rgba(255,255,255,0.55); font-size: 0.85rem; text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--gold); }
+  .footer-copy { color: rgba(255,255,255,0.3); font-size: 0.78rem; }
+
+  /* CONTACT FORM */
+  .reviews-section-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: start; }
+  .reviews-left p { color: var(--text-muted); line-height: 1.8; margin-bottom: 2rem; }
+  .review-highlight { display: flex; align-items: center; gap: 14px; background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1rem; }
+  .review-highlight-icon { font-size: 1.4rem; }
+  .review-highlight-text strong { display: block; font-size: 0.88rem; font-weight: 600; color: var(--navy); }
+  .review-highlight-text span { font-size: 0.78rem; color: var(--text-muted); }
+  .form-group { margin-bottom: 1.2rem; }
+  .form-group label { display: block; font-size: 0.82rem; font-weight: 500; color: var(--navy); margin-bottom: 6px; }
+  .form-group input, .form-group textarea {
+    width: 100%; padding: 12px 16px;
+    border: 1.5px solid var(--light-gray); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; color: var(--text-dark);
+    background: var(--white); transition: border-color 0.2s;
+    outline: none;
+  }
+  .form-group input:focus, .form-group textarea:focus { border-color: var(--gold); }
+  .form-group textarea { height: 110px; resize: vertical; }
+  .star-rating-wrap { display: flex; flex-direction: column; gap: 6px; }
+  .star-rating-wrap label { font-size: 0.82rem; font-weight: 500; color: var(--navy); }
+  .stars { display: flex; gap: 6px; }
+  .star {
+    font-size: 2rem; cursor: pointer; color: var(--light-gray);
+    transition: color 0.15s, transform 0.15s; user-select: none; line-height: 1;
+  }
+  .star:hover, .star.hovered, .star.selected { color: var(--gold); transform: scale(1.15); }
+  .star.selected { transform: scale(1); }
+  .star-label-text { font-size: 0.78rem; color: var(--text-muted); min-height: 18px; margin-top: 2px; }
+  .form-submit {
+    background: var(--navy); color: var(--white);
+    padding: 14px 36px; border-radius: 6px;
+    font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--navy-mid); }
+  .review-success {
+    display: none; text-align: center; padding: 2.5rem 1rem;
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+  }
+  .review-success .success-icon { font-size: 3rem; margin-bottom: 1rem; }
+  .review-success h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--navy); margin-bottom: 0.5rem; }
+  .review-success p { color: var(--text-muted); font-size: 0.9rem; }
+  .submitted-stars { color: var(--gold); font-size: 1.4rem; margin: 0.5rem 0; }
+  .reviews-cards { display: flex; flex-direction: column; gap: 1rem; margin-top: 2rem; }
+  .review-card {
+    background: var(--white); border: 1px solid var(--light-gray); border-radius: 10px;
+    padding: 1.25rem; animation: fadeIn 0.4s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .review-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.5rem; }
+  .review-card-name { font-weight: 600; font-size: 0.92rem; color: var(--navy); }
+  .review-card-stars { color: var(--gold); font-size: 0.95rem; letter-spacing: 1px; }
+  .review-card-service { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+  .review-card-text { font-size: 0.88rem; color: var(--text-muted); line-height: 1.6; font-style: italic; }
+
+  /* CAROUSEL */
+  .carousel-wrap { position: relative; display: flex; align-items: center; gap: 1rem; max-width: 900px; margin: 0 auto 1.5rem; }
+  .carousel-viewport { overflow: hidden; border-radius: 16px; flex: 1; }
+  .carousel-track { display: flex; transition: transform 0.5s cubic-bezier(0.4,0,0.2,1); will-change: transform; }
+  .carousel-slide { min-width: 100%; padding: 0 4px; box-sizing: border-box; }
+  .carousel-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 14px; padding: 2.5rem 2rem;
+    text-align: center; min-height: 240px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    box-shadow: 0 4px 24px rgba(11,31,58,0.07);
+  }
+  .carousel-card.new-review { border-color: var(--gold); box-shadow: 0 4px 24px rgba(201,168,76,0.2); }
+  .carousel-stars { color: var(--gold); font-size: 1.5rem; letter-spacing: 3px; margin-bottom: 1rem; }
+  .carousel-quote { color: var(--text-muted); font-size: 1rem; line-height: 1.7; font-style: italic; max-width: 620px; margin-bottom: 1.5rem; }
+  .carousel-author { display: flex; align-items: center; gap: 12px; }
+  .carousel-avatar {
+    width: 46px; height: 46px; border-radius: 50%;
+    background: var(--navy); color: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 700; font-size: 0.9rem; flex-shrink: 0;
+  }
+  .carousel-name { font-weight: 600; font-size: 0.92rem; color: var(--navy); }
+  .carousel-service { font-size: 0.75rem; color: var(--text-muted); }
+  .carousel-btn {
+    background: var(--white); border: 1.5px solid var(--border); color: var(--navy);
+    width: 44px; height: 44px; border-radius: 50%; font-size: 1.1rem;
+    cursor: pointer; flex-shrink: 0; transition: all 0.2s;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .carousel-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--navy); }
+  .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-bottom: 3rem; }
+  .carousel-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--light-gray); cursor: pointer; transition: all 0.2s; }
+  .carousel-dot.active { background: var(--gold); width: 24px; border-radius: 4px; }
+
+  /* REVIEW FORM BOX */
+  .review-form-box {
+    max-width: 900px; margin: 0 auto;
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 16px; overflow: hidden;
+  }
+  .review-form-header { background: var(--navy); padding: 2rem 2.5rem; }
+  .review-form-header .section-label { color: var(--gold); }
+  .review-form-header h3 { color: var(--white) !important; }
+  .review-form-header p { color: rgba(255,255,255,0.6) !important; }
+  .review-form-inner { padding: 2rem 2.5rem; }
+  .review-form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  /* CONTACT DETAILS */
+  .contact-details-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .contact-detail-card {
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 12px; padding: 1.75rem 1.5rem; text-align: center;
+    transition: all 0.3s;
+  }
+  .contact-detail-card:hover { background: rgba(255,255,255,0.1); border-color: var(--gold); transform: translateY(-3px); }
+  .contact-detail-card-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+  .contact-detail-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .contact-detail-card p { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 0.75rem; }
+  .contact-detail-card a { font-size: 0.8rem; color: var(--gold); text-decoration: none; font-weight: 500; transition: color 0.2s; }
+  .contact-detail-card a:hover { color: var(--gold-light); }
+
+  @media (max-width: 900px) {
+    .contact-details-grid { grid-template-columns: 1fr 1fr; }
+    .review-form-row { grid-template-columns: 1fr; }
+    .carousel-btn { display: none; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+    .services-grid, .pricing-grid { grid-template-columns: 1fr; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .pricing-card.featured { transform: scale(1); }
+    .hero-photo-wrap { display: none; }
+    .photo-frame { width: 100%; max-width: 300px; height: 360px; margin: 0 auto; }
+    .nav-links { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Sihle Dlamini</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact-details" class="nav-cta">Get in Touch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid">
+    <div class="hero-content">
+      <div class="hero-badge"><span>Professional Web Designer</span></div>
+      <h1>Building Websites That <em>Grow</em> Your Business</h1>
+      <p>I help small local businesses establish a powerful online presence with professionally crafted websites — designed to attract customers and drive real results.</p>
+      <div class="hero-actions">
+        <a href="#pricing" class="btn-primary">View Pricing</a>
+        <a href="#contact-details" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-num">50+</div>
+          <div class="hero-stat-label">Websites Delivered</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">100%</div>
+          <div class="hero-stat-label">Client Satisfaction</div>
+        </div>
+        <div>
+          <div class="hero-stat-num">3</div>
+          <div class="hero-stat-label">Packages Available</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-photo-wrap">
+      <div class="photo-frame">
+        <div class="photo-bg-office"></div>
+        <img class="photo-img" src="data:image/jpeg;base64,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" alt="Sihle Dlamini — Web Designer">
+        <div class="photo-accent"></div>
+        <div class="photo-accent-tl"></div>
+        <div class="experience-tag">
+          <span class="num">5+</span>
+          <div class="label">Years of<br>Experience</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-bg" id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-label">About Me</div>
+        <h2 class="section-title">Your Local Web Design Partner</h2>
+        <p>Hi, I'm <strong>Sihle Dlamini</strong> — a passionate web designer dedicated to helping small businesses in our community thrive online. I understand the unique challenges local businesses face, and I build websites that speak directly to your customers.</p>
+        <p>From a simple landing page to a fully featured business site with booking, e-commerce, or contact forms — I handle every detail so you can focus on running your business.</p>
+        <ul class="about-checklist">
+          <li>Custom designs tailored to your brand & industry</li>
+          <li>Mobile-friendly websites that look great on all devices</li>
+          <li>Fast, SEO-optimised pages to help customers find you</li>
+          <li>Ongoing support & easy content updates</li>
+          <li>Transparent pricing — no hidden fees, ever</li>
+        </ul>
+      </div>
+      <div class="about-skills">
+        <div class="skill-card">
+          <div class="skill-card-icon">🎨</div>
+          <h4>Custom Design</h4>
+          <p>Unique designs that reflect your brand and attract your ideal customers.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">📱</div>
+          <h4>Mobile-First</h4>
+          <p>Fully responsive sites that work perfectly on phones, tablets & desktops.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">🔍</div>
+          <h4>SEO Ready</h4>
+          <p>Built with best practices so Google can find and rank your business.</p>
+        </div>
+        <div class="skill-card">
+          <div class="skill-card-icon">⚡</div>
+          <h4>Fast & Secure</h4>
+          <p>Optimised for speed and security so your customers always have a great experience.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">Services I Offer</h2>
+    <p class="section-sub">From concept to launch — I provide everything a small business needs to succeed online.</p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-num">01</div>
+        <h3>Business Websites</h3>
+        <p>Professional multi-page websites for local businesses — showcasing your services, team, and contact information in a compelling way that turns visitors into customers.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">02</div>
+        <h3>Landing Pages</h3>
+        <p>Focused, high-converting single pages designed for promotions, product launches, or capturing leads — perfect for advertising campaigns.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">03</div>
+        <h3>E-Commerce Stores</h3>
+        <p>Online shops with secure payment systems, product galleries, and inventory management — so you can sell your products 24/7.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">04</div>
+        <h3>Website Redesign</h3>
+        <p>Transform your outdated website into a modern, fast, and mobile-friendly experience that reflects where your business is today.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">05</div>
+        <h3>SEO & Optimisation</h3>
+        <p>Improve your website's visibility on Google and other search engines so more potential customers can find your business online.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-num">06</div>
+        <h3>Maintenance & Support</h3>
+        <p>Ongoing website care including updates, security monitoring, backups, and content changes — so your site stays fresh and functional.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing-bg" id="pricing">
+  <div class="section-inner">
+    <div class="section-label">Transparent Pricing</div>
+    <h2 class="section-title">Choose the Right Package</h2>
+    <p class="section-sub">Flexible packages designed for every stage of your business. All prices are once-off unless stated.</p>
+    <div class="pricing-grid">
+
+      <!-- BASIC -->
+      <div class="pricing-card">
+        <div class="plan-name">Basic</div>
+        <div class="plan-price">R2,500<span> once-off</span></div>
+        <div class="plan-desc">Perfect for new businesses that need a clean, professional online presence quickly and affordably.</div>
+        <ul class="plan-features">
+          <li>1–3 Page Website</li>
+          <li>Mobile Responsive Design</li>
+          <li>Contact Form</li>
+          <li>Basic SEO Setup</li>
+          <li>1 Revision Round</li>
+          <li>7-Day Delivery</li>
+          <li class="no">Custom Animations</li>
+          <li class="no">E-Commerce / Online Store</li>
+          <li class="no">1-Month Free Support</li>
+        </ul>
+        <a href="#contact" class="plan-btn">Get Started</a>
+      </div>
+
+      <!-- STANDARD (FEATURED) -->
+      <div class="pricing-card featured">
+        <span class="featured-badge">Most Popular</span>
+        <div class="plan-name">Standard</div>
+        <div class="plan-price">R5,500<span> once-off</span></div>
+        <div class="plan-desc">The most popular choice — a complete, polished website with everything a growing local business needs.</div>
+        <ul class="plan-features">
+          <li>Up to 6 Pages</li>
+          <li>Mobile Responsive Design</li>
+          <li>Contact Form + Google Maps</li>
+          <li>Full SEO Optimisation</li>
+          <li>3 Revision Rounds</li>
+          <li>10-Day Delivery</li>
+          <li>Custom Animations</li>
+          <li class="no">E-Commerce / Online Store</li>
+          <li>1-Month Free Support</li>
+        </ul>
+        <a href="#contact" class="plan-btn featured-btn">Get Started</a>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="pricing-card">
+        <div class="plan-name">Premium</div>
+        <div class="plan-price">R9,500<span> once-off</span></div>
+        <div class="plan-desc">A fully-featured website for established businesses that want to sell online and dominate their local market.</div>
+        <ul class="plan-features">
+          <li>Unlimited Pages</li>
+          <li>Mobile Responsive Design</li>
+          <li>Advanced Contact + Booking System</li>
+          <li>Full SEO + Speed Optimisation</li>
+          <li>Unlimited Revisions</li>
+          <li>14-Day Delivery</li>
+          <li>Custom Animations</li>
+          <li>E-Commerce / Online Store</li>
+          <li>3-Months Free Support</li>
+        </ul>
+        <a href="#contact" class="plan-btn">Get Started</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section id="process">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From Idea to Live Website</h2>
+    <p class="section-sub">A simple, transparent process designed to get your business online without the stress.</p>
+    <div class="steps-grid">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h4>Discovery Call</h4>
+        <p>We discuss your business, goals, target audience, and what you need from your website.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h4>Design & Build</h4>
+        <p>I create your custom design and build the full website based on your requirements.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h4>Review & Revise</h4>
+        <p>You review the site, provide feedback, and I make any adjustments until you're happy.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h4>Launch!</h4>
+        <p>Your website goes live and your business is open for customers 24 hours a day.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section id="reviews" style="background: var(--off-white);">
+  <div class="section-inner">
+    <div class="section-label" style="text-align:center;">Client Reviews</div>
+    <h2 class="section-title" style="text-align:center; margin:0 auto 0.5rem;">What Clients Are Saying</h2>
+    <p class="section-sub" style="text-align:center; margin:0 auto 2.5rem;">Real feedback from real local businesses I've helped grow online.</p>
+
+    <!-- SLIDING CAROUSEL -->
+    <div class="carousel-wrap">
+      <button class="carousel-btn carousel-prev" onclick="slideReviews(-1)">&#8592;</button>
+      <div class="carousel-viewport">
+        <div class="carousel-track" id="carouselTrack">
+          <!-- Pre-loaded reviews -->
+          <div class="carousel-slide">
+            <div class="carousel-card">
+              <div class="carousel-stars">★★★★★</div>
+              <p class="carousel-quote">"Sihle built my salon's website in under a week. It looked stunning and my bookings went up immediately. Best investment I've made for my business!"</p>
+              <div class="carousel-author">
+                <div class="carousel-avatar">NM</div>
+                <div>
+                  <div class="carousel-name">Nomsa Mahlangu</div>
+                  <div class="carousel-service">Hair Salon Website</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-card">
+              <div class="carousel-stars">★★★★★</div>
+              <p class="carousel-quote">"Professional, fast, and affordable. Sihle understood exactly what my spaza shop needed and delivered beyond my expectations. I now get customers from Google!"</p>
+              <div class="carousel-author">
+                <div class="carousel-avatar">TK</div>
+                <div>
+                  <div class="carousel-name">Thabo Khumalo</div>
+                  <div class="carousel-service">Business Website</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-card">
+              <div class="carousel-stars">★★★★☆</div>
+              <p class="carousel-quote">"I was nervous about getting a website but Sihle made the process so easy. He explained everything clearly and the final product was exactly what I wanted."</p>
+              <div class="carousel-author">
+                <div class="carousel-avatar">ZD</div>
+                <div>
+                  <div class="carousel-name">Zanele Dlamini</div>
+                  <div class="carousel-service">Landing Page</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-slide">
+            <div class="carousel-card">
+              <div class="carousel-stars">★★★★★</div>
+              <p class="carousel-quote">"My online store is now running 24/7 and I'm getting orders while I sleep. Sihle's Premium package was worth every rand. Highly recommend!"</p>
+              <div class="carousel-author">
+                <div class="carousel-avatar">LN</div>
+                <div>
+                  <div class="carousel-name">Lungelo Nkosi</div>
+                  <div class="carousel-service">E-Commerce Store</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-btn carousel-next" onclick="slideReviews(1)">&#8594;</button>
+    </div>
+    <!-- Dots -->
+    <div class="carousel-dots" id="carouselDots"></div>
+
+    <!-- REVIEW FORM -->
+    <div class="review-form-box">
+      <div class="review-form-header">
+        <div class="section-label" style="margin-bottom:0.4rem;">Leave a Review</div>
+        <h3 style="font-family:'Playfair Display',serif; font-size:1.5rem; color:var(--navy); margin-bottom:0.4rem;">Share Your Experience</h3>
+        <p style="color:var(--text-muted); font-size:0.88rem;">Your review helps other local businesses find the right web designer.</p>
+      </div>
+      <div id="reviewFormWrap" class="review-form-inner">
+        <div class="review-form-row">
+          <div class="form-group">
+            <label>Your Full Name</label>
+            <input type="text" id="reviewName" placeholder="e.g. Thabo Nkosi">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" id="reviewEmail" placeholder="thabo@example.com">
+          </div>
+        </div>
+        <div class="review-form-row">
+          <div class="form-group">
+            <label>Phone Number <span style="color:var(--text-muted);font-weight:400;">(optional)</span></label>
+            <input type="tel" id="reviewPhone" placeholder="+27 XX XXX XXXX">
+          </div>
+          <div class="form-group">
+            <label>Service Received</label>
+            <input type="text" id="reviewService" placeholder="e.g. Business Website, Landing Page…">
+          </div>
+        </div>
+        <div class="form-group star-rating-wrap">
+          <label>Rate My Service</label>
+          <div class="stars" id="starRow">
+            <span class="star" data-val="1">★</span>
+            <span class="star" data-val="2">★</span>
+            <span class="star" data-val="3">★</span>
+            <span class="star" data-val="4">★</span>
+            <span class="star" data-val="5">★</span>
+          </div>
+          <div class="star-label-text" id="starLabelText">Click a star to rate</div>
+        </div>
+        <div class="form-group">
+          <label>Your Review</label>
+          <textarea id="reviewText" placeholder="Tell others about your experience — what did you love? Would you recommend Sihle?"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitReview()">Submit My Review ★</button>
+      </div>
+      <div class="review-success" id="reviewSuccess">
+        <div class="success-icon">🎉</div>
+        <h3>Thank You!</h3>
+        <div class="submitted-stars" id="successStars"></div>
+        <p>Your review is now live in the carousel above. It means the world — thank you!</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT DETAILS -->
+<section id="contact-details" style="background: var(--navy);">
+  <div class="section-inner">
+    <div style="text-align:center; margin-bottom: 3rem;">
+      <div class="section-label" style="color:var(--gold);">Get in Touch</div>
+      <h2 class="section-title" style="color:var(--white); margin:0 auto 0.75rem;">Let's Build Something Great Together</h2>
+      <p class="section-sub" style="color:rgba(255,255,255,0.6); margin:0 auto;">Ready to get your business online? Reach out and I'll get back to you within 24 hours with a free consultation.</p>
+    </div>
+    <div class="contact-details-grid">
+      <div class="contact-detail-card">
+        <div class="contact-detail-card-icon">📧</div>
+        <h4>Email Me</h4>
+        <p>dsihle507@gmail.com</p>
+        <a href="mailto:dsihle507@gmail.com">Send an Email →</a>
+      </div>
+      <div class="contact-detail-card">
+        <div class="contact-detail-card-icon">📱</div>
+        <h4>Call or WhatsApp</h4>
+        <p>+27 63 187 9745</p>
+        <a href="tel:+27631879745">Call Now →</a>
+      </div>
+      <div class="contact-detail-card">
+        <div class="contact-detail-card-icon">📍</div>
+        <h4>Based In</h4>
+        <p>Bloemfontein, Free State, South Africa</p>
+        <a href="#about">Learn More →</a>
+      </div>
+      <div class="contact-detail-card">
+        <div class="contact-detail-card-icon">🕐</div>
+        <h4>Working Hours</h4>
+        <p>Mon – Fri: 8am – 6pm</p>
+        <a href="#pricing">View Packages →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  /* ── STAR RATING ── */
+  const starLabels = ['', 'Poor', 'Fair', 'Good', 'Very Good', 'Excellent!'];
+  let selectedRating = 0;
+  const stars = document.querySelectorAll('.star');
+  const starLabelText = document.getElementById('starLabelText');
+
+  stars.forEach(star => {
+    star.addEventListener('mouseenter', () => {
+      const val = +star.dataset.val;
+      stars.forEach(s => { s.classList.toggle('hovered', +s.dataset.val <= val); s.classList.remove('selected'); });
+      starLabelText.textContent = starLabels[val];
+    });
+    star.addEventListener('mouseleave', () => {
+      stars.forEach(s => s.classList.remove('hovered'));
+      starLabelText.textContent = selectedRating ? starLabels[selectedRating] : 'Click a star to rate';
+      if (selectedRating) stars.forEach(s => s.classList.toggle('selected', +s.dataset.val <= selectedRating));
+    });
+    star.addEventListener('click', () => {
+      selectedRating = +star.dataset.val;
+      stars.forEach(s => { s.classList.remove('hovered'); s.classList.toggle('selected', +s.dataset.val <= selectedRating); });
+      starLabelText.textContent = starLabels[selectedRating];
+    });
+  });
+
+  /* ── CAROUSEL ── */
+  let currentSlide = 0;
+
+  function buildDots() {
+    const track = document.getElementById('carouselTrack');
+    const total = track.querySelectorAll('.carousel-slide').length;
+    const dotsEl = document.getElementById('carouselDots');
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < total; i++) {
+      const d = document.createElement('span');
+      d.className = 'carousel-dot' + (i === currentSlide ? ' active' : '');
+      d.onclick = () => goToSlide(i);
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function goToSlide(n) {
+    const track = document.getElementById('carouselTrack');
+    const total = track.querySelectorAll('.carousel-slide').length;
+    currentSlide = (n + total) % total;
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+    document.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === currentSlide));
+  }
+
+  function slideReviews(dir) { goToSlide(currentSlide + dir); }
+
+  /* Auto-slide every 5s */
+  setInterval(() => slideReviews(1), 5000);
+
+  /* Init dots on load */
+  window.addEventListener('DOMContentLoaded', buildDots);
+
+  /* ── SUBMIT REVIEW ── */
+  function submitReview() {
+    const name = document.getElementById('reviewName').value.trim();
+    const email = document.getElementById('reviewEmail').value.trim();
+    const service = document.getElementById('reviewService').value.trim();
+    const text = document.getElementById('reviewText').value.trim();
+
+    if (!name) { alert('Please enter your name.'); return; }
+    if (!email) { alert('Please enter your email address.'); return; }
+    if (!selectedRating) { alert('Please select a star rating.'); return; }
+    if (!text) { alert('Please write a short review.'); return; }
+
+    /* Add new slide to carousel */
+    const track = document.getElementById('carouselTrack');
+    const starStr = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+    const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0,2);
+    const slide = document.createElement('div');
+    slide.className = 'carousel-slide';
+    slide.innerHTML = `
+      <div class="carousel-card new-review">
+        <div class="carousel-stars">${starStr}</div>
+        <p class="carousel-quote">"${escHtml(text)}"</p>
+        <div class="carousel-author">
+          <div class="carousel-avatar" style="background:var(--gold);color:var(--navy);">${escHtml(initials)}</div>
+          <div>
+            <div class="carousel-name">${escHtml(name)}</div>
+            <div class="carousel-service">${service ? escHtml(service) : 'Valued Client'}</div>
+          </div>
+        </div>
+      </div>`;
+    track.appendChild(slide);
+
+    /* Rebuild dots & jump to new slide */
+    const total = track.querySelectorAll('.carousel-slide').length;
+    buildDots();
+    goToSlide(total - 1);
+
+    /* Show success */
+    document.getElementById('reviewFormWrap').style.display = 'none';
+    const successEl = document.getElementById('reviewSuccess');
+    successEl.style.display = 'block';
+    document.getElementById('successStars').textContent = starStr;
+  }
+
+  function escHtml(str) {
+    return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+</script>
+
+<!-- CTA -->
+<section class="cta-section">
+  <h2>Ready to Get Online?</h2>
+  <p>Join dozens of local businesses that already have a professional website. Let's make yours next.</p>
+  <a href="#contact-details" class="cta-btn">Start Your Project Today</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Sihle Dlamini</div>
+  <ul class="footer-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#reviews">Reviews</a></li>
+    <li><a href="#contact-details">Contact</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Sihle Dlamini Web Design. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
